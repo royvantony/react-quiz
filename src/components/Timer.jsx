@@ -6,9 +6,11 @@ function Timer({ dispatch, secondsRemaining }) {
   useEffect(
     function () {
       const id = setInterval(() => {
-        clearInterval(id);
         secondsRemaining > 0 && dispatch({ type: "tick" });
-        secondsRemaining <= 0 && dispatch({ type: "finished" });
+        if (secondsRemaining <= 0) {
+          clearInterval(id);
+          dispatch({ type: "finished" });
+        }
       }, 1000);
       return () => clearInterval(id);
     },
