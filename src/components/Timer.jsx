@@ -6,11 +6,13 @@ function Timer({ dispatch, secondsRemaining }) {
   useEffect(
     function () {
       const id = setInterval(() => {
-        dispatch({ type: "tick" });
+        clearInterval(id);
+        secondsRemaining > 0 && dispatch({ type: "tick" });
+        secondsRemaining <= 0 && dispatch({ type: "finished" });
       }, 1000);
       return () => clearInterval(id);
     },
-    [dispatch]
+    [dispatch, secondsRemaining]
   );
   return (
     <div className="timer">

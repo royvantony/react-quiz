@@ -12,7 +12,7 @@ import Progress from "./Progress";
 import Finished from "./Finished";
 import Timer from "./Timer";
 import Footer from "./Footer";
-const SECS_PER_QN = 30;
+const SECS_PER_QN = 20;
 const initialState = {
   questions: [],
   //'loading','error','ready','active','finished'
@@ -79,7 +79,7 @@ function reducer(state, action) {
       return {
         ...state,
         secondsRemaining: state.secondsRemaining - 1,
-        status: state.secondsRemaining === 0 ? "finished" : state.status,
+        // status: state.secondsRemaining === 0 ? "finished" : state.status,
       };
     default:
       throw new Error("unknown action");
